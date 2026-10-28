@@ -1,4 +1,4 @@
-# Frontier / ChefOST
+# Frontier-LLM / ChefOST
 
 ChefOST evaluates object-state tracking in procedural cooking videos. Use this repository for frontier vision-language model baselines, including Claude and OpenAI models.
 
