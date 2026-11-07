@@ -1,21 +1,6 @@
-# chefOST-data
+# Frontier
 
-[MOSCATO](https://github.com/eelhami/iccv25_moscato) annotations and vocabularies for CMU, EGTEA and EgoPER (distinct from Ego4D).
+Vision-language model experiments for object-state tracking.
 
-- `MOSCATO/annotations/ground_truth/`: reference labels for evaluation.
-- `MOSCATO/annotations/pseudo_labels/`: generated labels for training; keep separate from evaluation ground truth.
-- `MOSCATO/vocabulary/`: object, action and state dictionaries, plus video metadata.
-
-Includes JSON and XLSX files; no videos, extracted features or evaluation code. Multiple states can apply to one object at a time; verify video/frame alignment before scoring.
-
-## Download
-
-About 1.44 GB. Annotations require [Git LFS](https://git-lfs.com/).
-
-```bash
-brew install git-lfs # macOS; other platforms: git-lfs.com
-git lfs install
-git clone https://github.com/chefOST/chefOST-data.git
-```
-
-Already cloned? Run `git lfs pull` inside the repository.
+Use the [repository documentation on main](https://github.com/chefOST/frontier-llm/blob/main/README.md) and the
+[shared contribution rules](https://github.com/chefOST/.github/blob/main/CONTRIBUTING.md).
