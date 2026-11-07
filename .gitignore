@@ -1,0 +1,12 @@
+/wandb/
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+.pytest_cache/
+.DS_Store
+/runs/
+/MOSCATO/
+/ego4d-pseudo-labels/full-run-results/
