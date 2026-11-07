@@ -3,4 +3,5 @@ __pycache__/
 output/
 full-run-output/
 team-share/
+wandb/
 .DS_Store
