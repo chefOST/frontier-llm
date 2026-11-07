@@ -1,4 +1,8 @@
 {
   "entity": "chefOST",
-  "projects": {}
+  "default_project": "full_evals",
+  "projects": {
+    "experiments": "claude-experiments",
+    "full_evals": "claude - full evals"
+  }
 }
