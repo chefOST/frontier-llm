@@ -1,0 +1,1686 @@
+{
+  "source_run": "CMU__S08_Eggs_7150991-727",
+  "sorting": "All source and target vocabularies sorted alphabetically before mapping.",
+  "claude_output_vocabulary": {
+    "objects": [
+      "beaten egg",
+      "egg",
+      "oil",
+      "pan",
+      "scrambled egg"
+    ],
+    "states": [
+      "beaten/whisked into uniform yellow mixture",
+      "broken up and folded into scrambled pieces",
+      "cracked open, raw yolk and white in bowl",
+      "emptied pan with egg residue at sink",
+      "fully cooked, crumbled scrambled egg clumps",
+      "in bottle",
+      "intact yolk and white in bowl",
+      "large folded pieces",
+      "liquid egg in pan",
+      "liquid in bowl",
+      "pan with scrambled egg",
+      "poured into hot pan, beginning to cook",
+      "poured into pan, coating pan surface",
+      "set into solid round omelet layer",
+      "solid round layer in pan",
+      "whole raw egg in shell"
+    ]
+  },
+  "ground_truth_vocabulary": {
+    "objects": [
+      "baking tray",
+      "batter",
+      "bowl",
+      "bread slices",
+      "brownie batter",
+      "brownie mix package",
+      "cheese",
+      "contents of the bowl",
+      "cooked omelette",
+      "cutting board",
+      "egg mixture",
+      "eggs",
+      "eggshell",
+      "grater",
+      "jam",
+      "knife",
+      "mayonnaise",
+      "measuring spoon/cup",
+      "mixer",
+      "mixing spoon",
+      "oil",
+      "oil bottle",
+      "oven",
+      "oven gloves",
+      "pan",
+      "peanut butter",
+      "pepperoni",
+      "pizza",
+      "pizza sauce",
+      "salt",
+      "salt shaker",
+      "spread spatula",
+      "the dish",
+      "tin of pizza sauce",
+      "trash can",
+      "vegetable peeler",
+      "vegetables",
+      "water",
+      "water jar"
+    ],
+    "states": [
+      "added",
+      "assembled",
+      "batter-covered",
+      "beaten",
+      "cheese-covered",
+      "chopped",
+      "churned",
+      "clean",
+      "coated",
+      "coating",
+      "cooked",
+      "covered",
+      "cracked",
+      "creamy",
+      "crumbly",
+      "denser",
+      "diluted",
+      "dirty",
+      "discarded",
+      "double-layered",
+      "egg-coated",
+      "egg-covered",
+      "empty",
+      "flavored",
+      "flipped",
+      "full",
+      "grated",
+      "grinded",
+      "in bowl",
+      "in use",
+      "in-oven",
+      "in-pan",
+      "inside",
+      "jam-topped",
+      "juiced",
+      "leftover",
+      "less-covered",
+      "liquefied",
+      "mayonnaise-mixed",
+      "mixed",
+      "oily",
+      "omelet-filled",
+      "on",
+      "on bread",
+      "on dish",
+      "on top",
+      "on tray",
+      "partially-empty",
+      "peanut butter topped",
+      "peanut-butter-and-jam-covered",
+      "peeled",
+      "placed",
+      "poured",
+      "pressed-together",
+      "ready-to-cook",
+      "relocated",
+      "saucy",
+      "scattered",
+      "scooped-out",
+      "seasoned",
+      "seasoning",
+      "separated",
+      "served",
+      "smooth",
+      "solid",
+      "speckled",
+      "sprayed",
+      "sticky",
+      "stuffed",
+      "thin",
+      "topped",
+      "topped with pepperoni",
+      "utilized",
+      "vegetable-covered",
+      "warm",
+      "wet",
+      "yellow"
+    ]
+  },
+  "strategies": {
+    "lexical": {
+      "objects": {
+        "beaten egg": "eggs",
+        "egg": "eggs",
+        "oil": "oil",
+        "pan": "pan",
+        "scrambled egg": "eggs"
+      },
+      "states": {
+        "beaten/whisked into uniform yellow mixture": [
+          "beaten",
+          "smooth",
+          "yellow"
+        ],
+        "broken up and folded into scrambled pieces": [
+          "beaten",
+          "cracked"
+        ],
+        "cracked open, raw yolk and white in bowl": [
+          "cracked",
+          "in bowl"
+        ],
+        "emptied pan with egg residue at sink": [
+          "empty"
+        ],
+        "fully cooked, crumbled scrambled egg clumps": [
+          "beaten",
+          "cooked"
+        ],
+        "in bottle": [
+          "unmapped:in bottle"
+        ],
+        "intact yolk and white in bowl": [
+          "in bowl"
+        ],
+        "large folded pieces": [
+          "unmapped:large folded pieces"
+        ],
+        "liquid egg in pan": [
+          "in-pan",
+          "liquefied"
+        ],
+        "liquid in bowl": [
+          "in bowl",
+          "liquefied"
+        ],
+        "pan with scrambled egg": [
+          "beaten"
+        ],
+        "poured into hot pan, beginning to cook": [
+          "poured",
+          "warm"
+        ],
+        "poured into pan, coating pan surface": [
+          "coating",
+          "poured"
+        ],
+        "set into solid round omelet layer": [
+          "on",
+          "solid"
+        ],
+        "solid round layer in pan": [
+          "in-pan",
+          "solid"
+        ],
+        "whole raw egg in shell": [
+          "unmapped:whole raw egg in shell"
+        ]
+      }
+    },
+    "qwen_cosine": {
+      "objects_top_1": {
+        "beaten egg": [
+          {
+            "target": "egg mixture",
+            "similarity": 0.8916
+          }
+        ],
+        "egg": [
+          {
+            "target": "eggs",
+            "similarity": 0.9468
+          }
+        ],
+        "oil": [
+          {
+            "target": "oil",
+            "similarity": 1.001
+          }
+        ],
+        "pan": [
+          {
+            "target": "pan",
+            "similarity": 1.0
+          }
+        ],
+        "scrambled egg": [
+          {
+            "target": "cooked omelette",
+            "similarity": 0.8711
+          }
+        ]
+      },
+      "states": {
+        "top_1": {
+          "beaten/whisked into uniform yellow mixture": [
+            {
+              "target": "mayonnaise-mixed",
+              "similarity": 0.7144
+            }
+          ],
+          "broken up and folded into scrambled pieces": [
+            {
+              "target": "scattered",
+              "similarity": 0.7764
+            }
+          ],
+          "cracked open, raw yolk and white in bowl": [
+            {
+              "target": "in bowl",
+              "similarity": 0.7471
+            }
+          ],
+          "emptied pan with egg residue at sink": [
+            {
+              "target": "scooped-out",
+              "similarity": 0.6982
+            }
+          ],
+          "fully cooked, crumbled scrambled egg clumps": [
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7466
+            }
+          ],
+          "in bottle": [
+            {
+              "target": "in bowl",
+              "similarity": 0.7876
+            }
+          ],
+          "intact yolk and white in bowl": [
+            {
+              "target": "in bowl",
+              "similarity": 0.7695
+            }
+          ],
+          "large folded pieces": [
+            {
+              "target": "full",
+              "similarity": 0.6616
+            }
+          ],
+          "liquid egg in pan": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7378
+            }
+          ],
+          "liquid in bowl": [
+            {
+              "target": "in bowl",
+              "similarity": 0.853
+            }
+          ],
+          "pan with scrambled egg": [
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7876
+            }
+          ],
+          "poured into hot pan, beginning to cook": [
+            {
+              "target": "in-pan",
+              "similarity": 0.7334
+            }
+          ],
+          "poured into pan, coating pan surface": [
+            {
+              "target": "poured",
+              "similarity": 0.7163
+            }
+          ],
+          "set into solid round omelet layer": [
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7734
+            }
+          ],
+          "solid round layer in pan": [
+            {
+              "target": "in-pan",
+              "similarity": 0.7466
+            }
+          ],
+          "whole raw egg in shell": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7627
+            }
+          ]
+        },
+        "top_2": {
+          "beaten/whisked into uniform yellow mixture": [
+            {
+              "target": "mayonnaise-mixed",
+              "similarity": 0.7144
+            },
+            {
+              "target": "yellow",
+              "similarity": 0.6709
+            }
+          ],
+          "broken up and folded into scrambled pieces": [
+            {
+              "target": "scattered",
+              "similarity": 0.7764
+            },
+            {
+              "target": "crumbly",
+              "similarity": 0.7441
+            }
+          ],
+          "cracked open, raw yolk and white in bowl": [
+            {
+              "target": "in bowl",
+              "similarity": 0.7471
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.7124
+            }
+          ],
+          "emptied pan with egg residue at sink": [
+            {
+              "target": "scooped-out",
+              "similarity": 0.6982
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.6943
+            }
+          ],
+          "fully cooked, crumbled scrambled egg clumps": [
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7466
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.7461
+            }
+          ],
+          "in bottle": [
+            {
+              "target": "in bowl",
+              "similarity": 0.7876
+            },
+            {
+              "target": "poured",
+              "similarity": 0.7603
+            }
+          ],
+          "intact yolk and white in bowl": [
+            {
+              "target": "in bowl",
+              "similarity": 0.7695
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.7671
+            }
+          ],
+          "large folded pieces": [
+            {
+              "target": "full",
+              "similarity": 0.6616
+            },
+            {
+              "target": "double-layered",
+              "similarity": 0.647
+            }
+          ],
+          "liquid egg in pan": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7378
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7148
+            }
+          ],
+          "liquid in bowl": [
+            {
+              "target": "in bowl",
+              "similarity": 0.853
+            },
+            {
+              "target": "poured",
+              "similarity": 0.7114
+            }
+          ],
+          "pan with scrambled egg": [
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7876
+            },
+            {
+              "target": "in-pan",
+              "similarity": 0.7876
+            }
+          ],
+          "poured into hot pan, beginning to cook": [
+            {
+              "target": "in-pan",
+              "similarity": 0.7334
+            },
+            {
+              "target": "in-oven",
+              "similarity": 0.7222
+            }
+          ],
+          "poured into pan, coating pan surface": [
+            {
+              "target": "poured",
+              "similarity": 0.7163
+            },
+            {
+              "target": "in-pan",
+              "similarity": 0.7134
+            }
+          ],
+          "set into solid round omelet layer": [
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7734
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.7222
+            }
+          ],
+          "solid round layer in pan": [
+            {
+              "target": "in-pan",
+              "similarity": 0.7466
+            },
+            {
+              "target": "in-oven",
+              "similarity": 0.707
+            }
+          ],
+          "whole raw egg in shell": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7627
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.7368
+            }
+          ]
+        },
+        "top_3": {
+          "beaten/whisked into uniform yellow mixture": [
+            {
+              "target": "mayonnaise-mixed",
+              "similarity": 0.7144
+            },
+            {
+              "target": "yellow",
+              "similarity": 0.6709
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.6582
+            }
+          ],
+          "broken up and folded into scrambled pieces": [
+            {
+              "target": "scattered",
+              "similarity": 0.7764
+            },
+            {
+              "target": "crumbly",
+              "similarity": 0.7441
+            },
+            {
+              "target": "chopped",
+              "similarity": 0.7368
+            }
+          ],
+          "cracked open, raw yolk and white in bowl": [
+            {
+              "target": "in bowl",
+              "similarity": 0.7471
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.7124
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.6978
+            }
+          ],
+          "emptied pan with egg residue at sink": [
+            {
+              "target": "scooped-out",
+              "similarity": 0.6982
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.6943
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.689
+            }
+          ],
+          "fully cooked, crumbled scrambled egg clumps": [
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7466
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.7461
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.7148
+            }
+          ],
+          "in bottle": [
+            {
+              "target": "in bowl",
+              "similarity": 0.7876
+            },
+            {
+              "target": "poured",
+              "similarity": 0.7603
+            },
+            {
+              "target": "inside",
+              "similarity": 0.7241
+            }
+          ],
+          "intact yolk and white in bowl": [
+            {
+              "target": "in bowl",
+              "similarity": 0.7695
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.7671
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7305
+            }
+          ],
+          "large folded pieces": [
+            {
+              "target": "full",
+              "similarity": 0.6616
+            },
+            {
+              "target": "double-layered",
+              "similarity": 0.647
+            },
+            {
+              "target": "solid",
+              "similarity": 0.644
+            }
+          ],
+          "liquid egg in pan": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7378
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7148
+            },
+            {
+              "target": "in-pan",
+              "similarity": 0.687
+            }
+          ],
+          "liquid in bowl": [
+            {
+              "target": "in bowl",
+              "similarity": 0.853
+            },
+            {
+              "target": "poured",
+              "similarity": 0.7114
+            },
+            {
+              "target": "liquefied",
+              "similarity": 0.6978
+            }
+          ],
+          "pan with scrambled egg": [
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7876
+            },
+            {
+              "target": "in-pan",
+              "similarity": 0.7876
+            },
+            {
+              "target": "in bowl",
+              "similarity": 0.7388
+            }
+          ],
+          "poured into hot pan, beginning to cook": [
+            {
+              "target": "in-pan",
+              "similarity": 0.7334
+            },
+            {
+              "target": "in-oven",
+              "similarity": 0.7222
+            },
+            {
+              "target": "cooked",
+              "similarity": 0.7119
+            }
+          ],
+          "poured into pan, coating pan surface": [
+            {
+              "target": "poured",
+              "similarity": 0.7163
+            },
+            {
+              "target": "in-pan",
+              "similarity": 0.7134
+            },
+            {
+              "target": "coated",
+              "similarity": 0.6816
+            }
+          ],
+          "set into solid round omelet layer": [
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7734
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.7222
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.6978
+            }
+          ],
+          "solid round layer in pan": [
+            {
+              "target": "in-pan",
+              "similarity": 0.7466
+            },
+            {
+              "target": "in-oven",
+              "similarity": 0.707
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.6787
+            }
+          ],
+          "whole raw egg in shell": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7627
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.7368
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.708
+            }
+          ]
+        },
+        "threshold_0.65": {
+          "beaten/whisked into uniform yellow mixture": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.6582
+            },
+            {
+              "target": "mayonnaise-mixed",
+              "similarity": 0.7144
+            },
+            {
+              "target": "yellow",
+              "similarity": 0.6709
+            }
+          ],
+          "broken up and folded into scrambled pieces": [
+            {
+              "target": "beaten",
+              "similarity": 0.6587
+            },
+            {
+              "target": "chopped",
+              "similarity": 0.7368
+            },
+            {
+              "target": "churned",
+              "similarity": 0.6787
+            },
+            {
+              "target": "covered",
+              "similarity": 0.6523
+            },
+            {
+              "target": "cracked",
+              "similarity": 0.668
+            },
+            {
+              "target": "crumbly",
+              "similarity": 0.7441
+            },
+            {
+              "target": "discarded",
+              "similarity": 0.6865
+            },
+            {
+              "target": "flipped",
+              "similarity": 0.6528
+            },
+            {
+              "target": "grinded",
+              "similarity": 0.6621
+            },
+            {
+              "target": "mixed",
+              "similarity": 0.6528
+            },
+            {
+              "target": "placed",
+              "similarity": 0.6606
+            },
+            {
+              "target": "scattered",
+              "similarity": 0.7764
+            },
+            {
+              "target": "scooped-out",
+              "similarity": 0.6704
+            },
+            {
+              "target": "stuffed",
+              "similarity": 0.6641
+            }
+          ],
+          "cracked open, raw yolk and white in bowl": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7124
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.6904
+            },
+            {
+              "target": "in bowl",
+              "similarity": 0.7471
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.6978
+            },
+            {
+              "target": "peeled",
+              "similarity": 0.6509
+            }
+          ],
+          "emptied pan with egg residue at sink": [
+            {
+              "target": "discarded",
+              "similarity": 0.6538
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.689
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.6763
+            },
+            {
+              "target": "empty",
+              "similarity": 0.6631
+            },
+            {
+              "target": "in bowl",
+              "similarity": 0.6782
+            },
+            {
+              "target": "in-pan",
+              "similarity": 0.6729
+            },
+            {
+              "target": "leftover",
+              "similarity": 0.6885
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.6943
+            },
+            {
+              "target": "peeled",
+              "similarity": 0.6533
+            },
+            {
+              "target": "scooped-out",
+              "similarity": 0.6982
+            }
+          ],
+          "fully cooked, crumbled scrambled egg clumps": [
+            {
+              "target": "cheese-covered",
+              "similarity": 0.6543
+            },
+            {
+              "target": "chopped",
+              "similarity": 0.6499
+            },
+            {
+              "target": "cooked",
+              "similarity": 0.7061
+            },
+            {
+              "target": "crumbly",
+              "similarity": 0.6997
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.7461
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.7148
+            },
+            {
+              "target": "mayonnaise-mixed",
+              "similarity": 0.6772
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7466
+            },
+            {
+              "target": "ready-to-cook",
+              "similarity": 0.6699
+            }
+          ],
+          "in bottle": [
+            {
+              "target": "batter-covered",
+              "similarity": 0.6733
+            },
+            {
+              "target": "coated",
+              "similarity": 0.6572
+            },
+            {
+              "target": "covered",
+              "similarity": 0.6567
+            },
+            {
+              "target": "diluted",
+              "similarity": 0.6543
+            },
+            {
+              "target": "empty",
+              "similarity": 0.686
+            },
+            {
+              "target": "flavored",
+              "similarity": 0.6836
+            },
+            {
+              "target": "full",
+              "similarity": 0.6523
+            },
+            {
+              "target": "in bowl",
+              "similarity": 0.7876
+            },
+            {
+              "target": "in use",
+              "similarity": 0.7065
+            },
+            {
+              "target": "in-oven",
+              "similarity": 0.666
+            },
+            {
+              "target": "in-pan",
+              "similarity": 0.6807
+            },
+            {
+              "target": "inside",
+              "similarity": 0.7241
+            },
+            {
+              "target": "jam-topped",
+              "similarity": 0.688
+            },
+            {
+              "target": "juiced",
+              "similarity": 0.7061
+            },
+            {
+              "target": "liquefied",
+              "similarity": 0.7021
+            },
+            {
+              "target": "on",
+              "similarity": 0.6826
+            },
+            {
+              "target": "on bread",
+              "similarity": 0.6821
+            },
+            {
+              "target": "on top",
+              "similarity": 0.6543
+            },
+            {
+              "target": "on tray",
+              "similarity": 0.6626
+            },
+            {
+              "target": "placed",
+              "similarity": 0.6538
+            },
+            {
+              "target": "poured",
+              "similarity": 0.7603
+            },
+            {
+              "target": "scooped-out",
+              "similarity": 0.6738
+            },
+            {
+              "target": "solid",
+              "similarity": 0.6738
+            },
+            {
+              "target": "sprayed",
+              "similarity": 0.6709
+            },
+            {
+              "target": "sticky",
+              "similarity": 0.6533
+            },
+            {
+              "target": "stuffed",
+              "similarity": 0.6802
+            },
+            {
+              "target": "thin",
+              "similarity": 0.6504
+            },
+            {
+              "target": "topped",
+              "similarity": 0.6729
+            },
+            {
+              "target": "wet",
+              "similarity": 0.6606
+            }
+          ],
+          "intact yolk and white in bowl": [
+            {
+              "target": "cooked",
+              "similarity": 0.6636
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.7671
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.7266
+            },
+            {
+              "target": "in bowl",
+              "similarity": 0.7695
+            },
+            {
+              "target": "in-oven",
+              "similarity": 0.6865
+            },
+            {
+              "target": "leftover",
+              "similarity": 0.6504
+            },
+            {
+              "target": "mayonnaise-mixed",
+              "similarity": 0.6685
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7305
+            },
+            {
+              "target": "on bread",
+              "similarity": 0.6685
+            },
+            {
+              "target": "peeled",
+              "similarity": 0.6685
+            },
+            {
+              "target": "ready-to-cook",
+              "similarity": 0.6743
+            },
+            {
+              "target": "scooped-out",
+              "similarity": 0.6509
+            }
+          ],
+          "large folded pieces": [
+            {
+              "target": "full",
+              "similarity": 0.6616
+            }
+          ],
+          "liquid egg in pan": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7378
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.6841
+            },
+            {
+              "target": "in-oven",
+              "similarity": 0.668
+            },
+            {
+              "target": "in-pan",
+              "similarity": 0.687
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7148
+            }
+          ],
+          "liquid in bowl": [
+            {
+              "target": "in bowl",
+              "similarity": 0.853
+            },
+            {
+              "target": "in-oven",
+              "similarity": 0.6538
+            },
+            {
+              "target": "liquefied",
+              "similarity": 0.6978
+            },
+            {
+              "target": "on tray",
+              "similarity": 0.6597
+            },
+            {
+              "target": "poured",
+              "similarity": 0.7114
+            },
+            {
+              "target": "scooped-out",
+              "similarity": 0.6538
+            }
+          ],
+          "pan with scrambled egg": [
+            {
+              "target": "cheese-covered",
+              "similarity": 0.6602
+            },
+            {
+              "target": "cooked",
+              "similarity": 0.6719
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.7246
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.7275
+            },
+            {
+              "target": "in bowl",
+              "similarity": 0.7388
+            },
+            {
+              "target": "in-oven",
+              "similarity": 0.6934
+            },
+            {
+              "target": "in-pan",
+              "similarity": 0.7876
+            },
+            {
+              "target": "mayonnaise-mixed",
+              "similarity": 0.6548
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7876
+            },
+            {
+              "target": "on bread",
+              "similarity": 0.6968
+            },
+            {
+              "target": "on tray",
+              "similarity": 0.6938
+            },
+            {
+              "target": "peanut butter topped",
+              "similarity": 0.665
+            },
+            {
+              "target": "vegetable-covered",
+              "similarity": 0.6509
+            }
+          ],
+          "poured into hot pan, beginning to cook": [
+            {
+              "target": "cooked",
+              "similarity": 0.7119
+            },
+            {
+              "target": "in bowl",
+              "similarity": 0.6504
+            },
+            {
+              "target": "in-oven",
+              "similarity": 0.7222
+            },
+            {
+              "target": "in-pan",
+              "similarity": 0.7334
+            },
+            {
+              "target": "poured",
+              "similarity": 0.6733
+            },
+            {
+              "target": "ready-to-cook",
+              "similarity": 0.6909
+            }
+          ],
+          "poured into pan, coating pan surface": [
+            {
+              "target": "coated",
+              "similarity": 0.6816
+            },
+            {
+              "target": "coating",
+              "similarity": 0.6797
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.6733
+            },
+            {
+              "target": "in-oven",
+              "similarity": 0.6597
+            },
+            {
+              "target": "in-pan",
+              "similarity": 0.7134
+            },
+            {
+              "target": "poured",
+              "similarity": 0.7163
+            }
+          ],
+          "set into solid round omelet layer": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7222
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.6978
+            },
+            {
+              "target": "in-oven",
+              "similarity": 0.688
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7734
+            },
+            {
+              "target": "solid",
+              "similarity": 0.6509
+            }
+          ],
+          "solid round layer in pan": [
+            {
+              "target": "batter-covered",
+              "similarity": 0.6685
+            },
+            {
+              "target": "cooked",
+              "similarity": 0.6694
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.6743
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.6714
+            },
+            {
+              "target": "in bowl",
+              "similarity": 0.6748
+            },
+            {
+              "target": "in-oven",
+              "similarity": 0.707
+            },
+            {
+              "target": "in-pan",
+              "similarity": 0.7466
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.6787
+            },
+            {
+              "target": "on bread",
+              "similarity": 0.6621
+            },
+            {
+              "target": "on tray",
+              "similarity": 0.6504
+            },
+            {
+              "target": "solid",
+              "similarity": 0.6685
+            }
+          ],
+          "whole raw egg in shell": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7627
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.7368
+            },
+            {
+              "target": "in bowl",
+              "similarity": 0.6709
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.708
+            }
+          ]
+        },
+        "threshold_0.70": {
+          "beaten/whisked into uniform yellow mixture": [
+            {
+              "target": "mayonnaise-mixed",
+              "similarity": 0.7144
+            }
+          ],
+          "broken up and folded into scrambled pieces": [
+            {
+              "target": "chopped",
+              "similarity": 0.7368
+            },
+            {
+              "target": "crumbly",
+              "similarity": 0.7441
+            },
+            {
+              "target": "scattered",
+              "similarity": 0.7764
+            }
+          ],
+          "cracked open, raw yolk and white in bowl": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7124
+            },
+            {
+              "target": "in bowl",
+              "similarity": 0.7471
+            }
+          ],
+          "emptied pan with egg residue at sink": [],
+          "fully cooked, crumbled scrambled egg clumps": [
+            {
+              "target": "cooked",
+              "similarity": 0.7061
+            },
+            {
+              "target": "egg-coated",
+              "similarity": 0.7461
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.7148
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7466
+            }
+          ],
+          "in bottle": [
+            {
+              "target": "in bowl",
+              "similarity": 0.7876
+            },
+            {
+              "target": "in use",
+              "similarity": 0.7065
+            },
+            {
+              "target": "inside",
+              "similarity": 0.7241
+            },
+            {
+              "target": "juiced",
+              "similarity": 0.7061
+            },
+            {
+              "target": "liquefied",
+              "similarity": 0.7021
+            },
+            {
+              "target": "poured",
+              "similarity": 0.7603
+            }
+          ],
+          "intact yolk and white in bowl": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7671
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.7266
+            },
+            {
+              "target": "in bowl",
+              "similarity": 0.7695
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7305
+            }
+          ],
+          "large folded pieces": [],
+          "liquid egg in pan": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7378
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7148
+            }
+          ],
+          "liquid in bowl": [
+            {
+              "target": "in bowl",
+              "similarity": 0.853
+            },
+            {
+              "target": "poured",
+              "similarity": 0.7114
+            }
+          ],
+          "pan with scrambled egg": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7246
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.7275
+            },
+            {
+              "target": "in bowl",
+              "similarity": 0.7388
+            },
+            {
+              "target": "in-pan",
+              "similarity": 0.7876
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7876
+            }
+          ],
+          "poured into hot pan, beginning to cook": [
+            {
+              "target": "cooked",
+              "similarity": 0.7119
+            },
+            {
+              "target": "in-oven",
+              "similarity": 0.7222
+            },
+            {
+              "target": "in-pan",
+              "similarity": 0.7334
+            }
+          ],
+          "poured into pan, coating pan surface": [
+            {
+              "target": "in-pan",
+              "similarity": 0.7134
+            },
+            {
+              "target": "poured",
+              "similarity": 0.7163
+            }
+          ],
+          "set into solid round omelet layer": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7222
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7734
+            }
+          ],
+          "solid round layer in pan": [
+            {
+              "target": "in-oven",
+              "similarity": 0.707
+            },
+            {
+              "target": "in-pan",
+              "similarity": 0.7466
+            }
+          ],
+          "whole raw egg in shell": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7627
+            },
+            {
+              "target": "egg-covered",
+              "similarity": 0.7368
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.708
+            }
+          ]
+        },
+        "threshold_0.75": {
+          "beaten/whisked into uniform yellow mixture": [],
+          "broken up and folded into scrambled pieces": [
+            {
+              "target": "scattered",
+              "similarity": 0.7764
+            }
+          ],
+          "cracked open, raw yolk and white in bowl": [],
+          "emptied pan with egg residue at sink": [],
+          "fully cooked, crumbled scrambled egg clumps": [],
+          "in bottle": [
+            {
+              "target": "in bowl",
+              "similarity": 0.7876
+            },
+            {
+              "target": "poured",
+              "similarity": 0.7603
+            }
+          ],
+          "intact yolk and white in bowl": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7671
+            },
+            {
+              "target": "in bowl",
+              "similarity": 0.7695
+            }
+          ],
+          "large folded pieces": [],
+          "liquid egg in pan": [],
+          "liquid in bowl": [
+            {
+              "target": "in bowl",
+              "similarity": 0.853
+            }
+          ],
+          "pan with scrambled egg": [
+            {
+              "target": "in-pan",
+              "similarity": 0.7876
+            },
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7876
+            }
+          ],
+          "poured into hot pan, beginning to cook": [],
+          "poured into pan, coating pan surface": [],
+          "set into solid round omelet layer": [
+            {
+              "target": "omelet-filled",
+              "similarity": 0.7734
+            }
+          ],
+          "solid round layer in pan": [],
+          "whole raw egg in shell": [
+            {
+              "target": "egg-coated",
+              "similarity": 0.7627
+            }
+          ]
+        },
+        "threshold_0.80": {
+          "beaten/whisked into uniform yellow mixture": [],
+          "broken up and folded into scrambled pieces": [],
+          "cracked open, raw yolk and white in bowl": [],
+          "emptied pan with egg residue at sink": [],
+          "fully cooked, crumbled scrambled egg clumps": [],
+          "in bottle": [],
+          "intact yolk and white in bowl": [],
+          "large folded pieces": [],
+          "liquid egg in pan": [],
+          "liquid in bowl": [
+            {
+              "target": "in bowl",
+              "similarity": 0.853
+            }
+          ],
+          "pan with scrambled egg": [],
+          "poured into hot pan, beginning to cook": [],
+          "poured into pan, coating pan surface": [],
+          "set into solid round omelet layer": [],
+          "solid round layer in pan": [],
+          "whole raw egg in shell": []
+        }
+      }
+    },
+    "claude_vocab_mapper": {
+      "objects": {
+        "beaten egg": "egg mixture",
+        "egg": "eggs",
+        "oil": "oil",
+        "pan": "pan",
+        "scrambled egg": "cooked omelette"
+      },
+      "states": {
+        "beaten/whisked into uniform yellow mixture": [
+          "beaten",
+          "mixed",
+          "yellow"
+        ],
+        "broken up and folded into scrambled pieces": [
+          "separated"
+        ],
+        "cracked open, raw yolk and white in bowl": [
+          "cracked",
+          "in bowl"
+        ],
+        "emptied pan with egg residue at sink": [
+          "dirty",
+          "empty"
+        ],
+        "fully cooked, crumbled scrambled egg clumps": [
+          "cooked",
+          "crumbly"
+        ],
+        "in bottle": [],
+        "intact yolk and white in bowl": [
+          "in bowl"
+        ],
+        "large folded pieces": [],
+        "liquid egg in pan": [
+          "in-pan",
+          "liquefied"
+        ],
+        "liquid in bowl": [
+          "in bowl",
+          "liquefied"
+        ],
+        "pan with scrambled egg": [
+          "omelet-filled"
+        ],
+        "poured into hot pan, beginning to cook": [
+          "in-pan",
+          "poured"
+        ],
+        "poured into pan, coating pan surface": [
+          "coating",
+          "in-pan",
+          "poured"
+        ],
+        "set into solid round omelet layer": [
+          "cooked",
+          "solid"
+        ],
+        "solid round layer in pan": [
+          "in-pan",
+          "solid"
+        ],
+        "whole raw egg in shell": []
+      }
+    }
+  }
+}
