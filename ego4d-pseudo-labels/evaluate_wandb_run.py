@@ -2,9 +2,9 @@
 """Evaluate one Claude transition run against MOSCATO ground truth."""
 
 import argparse
+import hashlib
 import json
 import math
-import os
 import re
 import tempfile
 from pathlib import Path
@@ -28,14 +28,9 @@ def canonicalize(text, aliases):
     return max(matches, default=(0, None))[1]
 
 
-def state_set(text, aliases):
-    text = text.lower().strip()
-    states = {
-        canonical
-        for alias, canonical in aliases.items()
-        if alias and re.search(rf"(?<!\w){re.escape(alias)}(?!\w)", text)
-    }
-    return states or {f"unmapped:{text}"}
+def mapped_state_set(text, obj, mappings):
+    entry = mappings[obj][text.lower().strip()]
+    return set(entry["mapped"]) | {f"unmapped:{state}" for state in entry["unmapped"]}
 
 
 def intervals_and_events(obj, objects, states):
@@ -85,13 +80,13 @@ def timing_delta(all_ground_truth, fps_by_video):
     return math.sqrt(sum((gap - mean) ** 2 for gap in gaps) / len(gaps)), len(gaps)
 
 
-def prediction_timelines(rows, object_aliases, state_aliases, frame_count):
+def prediction_timelines(rows, object_aliases, state_mappings, frame_count):
     events = {}
-    unmapped = []
+    ignored = []
     for frame, raw_object, before, after in rows:
         obj = canonicalize(raw_object, object_aliases)
-        if obj is None:
-            unmapped.append({"frame": frame, "object": raw_object})
+        if obj not in state_mappings:
+            ignored.append({"frame": frame, "object": raw_object})
             continue
         events.setdefault(obj, []).append((int(frame), before, after))
 
@@ -102,15 +97,15 @@ def prediction_timelines(rows, object_aliases, state_aliases, frame_count):
         text = [None] * frame_count
         first_frame, first_before, _ = object_events[0]
         first_frame = min(max(first_frame, 0), frame_count)
-        labels[:first_frame] = [state_set(first_before, state_aliases)] * first_frame
+        labels[:first_frame] = [mapped_state_set(first_before, obj, state_mappings)] * first_frame
         text[:first_frame] = [first_before] * first_frame
         for index, (frame, _, after) in enumerate(object_events):
             end = object_events[index + 1][0] if index + 1 < len(object_events) else frame_count
             frame, end = min(max(frame, 0), frame_count), min(max(end, 0), frame_count)
-            labels[frame:end] = [state_set(after, state_aliases)] * max(0, end - frame)
+            labels[frame:end] = [mapped_state_set(after, obj, state_mappings)] * max(0, end - frame)
             text[frame:end] = [after] * max(0, end - frame)
         timelines[obj] = {"labels": labels, "text": text, "events": [row[0] for row in object_events]}
-    return timelines, unmapped
+    return timelines, ignored
 
 
 def cosine_scores(pairs):
@@ -125,13 +120,14 @@ def cosine_scores(pairs):
     return [float(vectors[predicted] @ vectors[truth]) for predicted, truth in pairs]
 
 
-def evaluate(annotation, rows, object_aliases, state_aliases, delta_seconds, source_fps):
+def evaluate(annotation, rows, object_aliases, state_mappings, delta_seconds, source_fps):
     frame_count = len(annotation["object"])
-    predicted, unmapped = prediction_timelines(rows, object_aliases, state_aliases, frame_count)
+    predicted, ignored = prediction_timelines(rows, object_aliases, state_mappings, frame_count)
     precision, recall, cosine_pairs, missing_cosine = [], [], [], 0
 
     gt_events = predicted_events = matches = 0
-    for obj, gt_timeline in annotation["state"].items():
+    for obj in sorted(state_mappings):
+        gt_timeline = annotation["state"][obj]
         eligible, intervals = intervals_and_events(obj, annotation["object"], gt_timeline)
         pred = predicted.get(obj)
         for frame, is_eligible in enumerate(eligible):
@@ -163,7 +159,6 @@ def evaluate(annotation, rows, object_aliases, state_aliases, delta_seconds, sou
             matches += match_count
         predicted_events += len(object_predictions) - len(assigned)
 
-    predicted_events += len(unmapped)
     cosine = cosine_scores(cosine_pairs)
     tp, fp, fn = matches, predicted_events - matches, gt_events - matches
     return {
@@ -180,8 +175,9 @@ def evaluate(annotation, rows, object_aliases, state_aliases, delta_seconds, sou
         "recall_frames": len(recall),
         "cosine_compared_frames": len(cosine),
         "cosine_missing_frames": missing_cosine,
-        "unmapped_object_events": len(unmapped),
-        "unmapped_objects": sorted({item["object"] for item in unmapped}),
+        "matched_objects": sorted(state_mappings),
+        "ignored_object_events": len(ignored),
+        "ignored_objects": sorted({item["object"] for item in ignored}),
     }
 
 
@@ -190,6 +186,7 @@ def main():
     parser.add_argument("run_id")
     default_data = Path(__file__).resolve().parents[2] / "chefOST-data" / "MOSCATO"
     parser.add_argument("--data", type=Path, default=default_data)
+    parser.add_argument("--state-mapping", type=Path, required=True)
     parser.add_argument("--no-log", action="store_true")
     args = parser.parse_args()
 
@@ -202,7 +199,11 @@ def main():
     all_ground_truth = json.loads(ground_truth_path.read_text())
     annotation = all_ground_truth[video]
     object_aliases = json.loads((args.data / "vocabulary" / dataset / object_file).read_text())["all2one"]
-    state_aliases = json.loads((args.data / "vocabulary" / dataset / "state_dict.json").read_text())["all2one"]
+    mapping_document = json.loads(args.state_mapping.read_text())
+    state_mappings = mapping_document["mapping"]
+    unknown_objects = set(state_mappings) - set(annotation["state"])
+    if unknown_objects:
+        raise ValueError(f"mapping contains objects absent from ground truth: {sorted(unknown_objects)}")
 
     fps_by_video = {}
     for run in api.runs(f"{ENTITY}/{PROJECT}"):
@@ -219,7 +220,7 @@ def main():
         table = json.loads(Path(downloaded.name).read_text())
     rows = [dict(zip(table["columns"], row)) for row in table["data"]]
     ordered_rows = [[row["frame"], row["object"], row["state_before"], row["state_after"]] for row in rows]
-    metrics = evaluate(annotation, ordered_rows, object_aliases, state_aliases, delta, float(source.config["source_fps"]))
+    metrics = evaluate(annotation, ordered_rows, object_aliases, state_mappings, delta, float(source.config["source_fps"]))
     metrics.update({"timing_delta_seconds": delta, "timing_gap_count": gap_count})
     print(json.dumps(metrics, indent=2))
 
@@ -242,15 +243,22 @@ def main():
                 "state_aggregation": "equal mean across eligible object/frame units",
                 "empty_gt_handling": "exclude from state-content metrics",
                 "cosine_aggregation": "equal mean; missing prediction scores zero",
-                "object_normalization": "longest whole-phrase match in MOSCATO all2one",
-                "state_normalization": "all whole-phrase matches in MOSCATO all2one",
+                "object_normalization": "longest whole-phrase match in MOSCATO all2one; unmatched objects ignored",
+                "state_normalization": "LLM mapping against alphabetized per-object, per-video GT vocabulary",
+                "state_mapping_model": mapping_document["model"],
+                "state_mapping_sha256": hashlib.sha256(args.state_mapping.read_bytes()).hexdigest(),
+                "unmapped_state_handling": "retained as unique false prediction",
                 "prediction_timeline": "first state_before backfilled; state_after carried to next transition",
                 "alignment": "source frame index equals annotation array index",
                 "timing_delta_split": f"full {dataset} ground-truth split",
             },
         )
         run.log({key: value for key, value in metrics.items() if not isinstance(value, list)})
-        run.summary["unmapped_objects"] = json.dumps(metrics["unmapped_objects"])
+        run.summary["matched_objects"] = json.dumps(metrics["matched_objects"])
+        run.summary["ignored_objects"] = json.dumps(metrics["ignored_objects"])
+        artifact = wandb.Artifact(f"state-mapping-{source.id}", type="state-mapping")
+        artifact.add_file(str(args.state_mapping), name="state_mapping.json")
+        run.log_artifact(artifact)
         run.finish()
 
 
